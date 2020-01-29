@@ -9,7 +9,7 @@ const styles = {
 };
 
 const Item = (label) => (
-  <Virtual style={styles}>
+  <Virtual tag={'p'} style={styles}>
     {label}
   </Virtual>
 );
