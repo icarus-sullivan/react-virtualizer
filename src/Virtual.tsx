@@ -7,7 +7,7 @@ const DEFAULT_DIMENSIONS = {
   width: 'auto',
 };
 
-const Virtual = ({ children, tag = 'div', ...props }: VirtualProps) => {
+const Virtual = ({ children, style = {}, tag = 'div', ...props }: VirtualProps) => {
   const [vis, setVis] = useState(false);
   const [lastKnownDimensions, setLastKnownDimensions] = useState(DEFAULT_DIMENSIONS)
   const ref = useRef();
@@ -35,13 +35,13 @@ const Virtual = ({ children, tag = 'div', ...props }: VirtualProps) => {
   }, [vis]);
 
   // Use last known height to mimic space when not visible
-  const style = vis ? {} : lastKnownDimensions;
+  const overrides = vis ? style : { ...style, ...lastKnownDimensions };
 
   return React.createElement(
     tag,
     {
       ...props,
-      style,
+      style: overrides,
       ref,
     },
     vis ? children : [],

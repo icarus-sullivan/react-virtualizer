@@ -6,12 +6,14 @@ const Reveal = ({ children, tag = 'div', ...props }: VirtualProps) => {
   const [vis, setVis] = useState(false);
   const ref = useRef();
   useEffect(() => {
+    let loaded = false;
     const obs = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        if (loaded && entries[0].isIntersecting) {
           setVis(true);
           obs.unobserve(ref.current);
         }
+        loaded = true;
       },
       {
         root: null,

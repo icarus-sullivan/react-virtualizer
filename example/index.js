@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ReactInject from '@sullivan/react-virtualizer';
+import { Reveal } from '@sullivan/react-virtualizer';
+
+import Item from './Item';
+import Footer from './Footer';
+
+const items = Array(100).fill().map((_, i) => `item_${i}`);
 
 const Render = () => (
-  <>
-    <div id="replace-me" />
-    <ReactInject src="circle.svg" tag="p"/>
-    <ReactInject id="replace-me" src="text.md" />
-  </>
+  <div>
+    {items.map(Item)}
+    <Footer />
+  </div>
 );
 
 const elem = document.createElement('div');
