@@ -16,7 +16,7 @@ yarn add @sullivan/react-virtualizer
 # Usage
 
 ## Virtual 
-The `Virtual` hides its children when it is no longer visible within the browser window. 
+The `Virtual` component hides its children when it is no longer visible within the browser window. 
 
 ```javascript
 import Virtual from '@sullivan/react-virtualizer';
@@ -41,7 +41,7 @@ const Image = ({ src }) => (
 );
 ```
 
-# Props 
+## Props 
 ```
 interface VirtualProps {
   tag?: string,
