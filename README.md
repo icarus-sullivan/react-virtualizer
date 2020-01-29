@@ -42,13 +42,6 @@ const Image = ({ src }) => (
 ```
 
 ## Props 
-```
-interface VirtualProps {
-  tag?: string,
-  children: JSX.Element[] | JSX.Element,
-  style?: object,
-}
-```
 
 | prop     | default |
 |----------|---------|
@@ -61,5 +54,5 @@ React 16.8.3+
  
 ## Changelog
 
-### 0.1.0
+### 1.0.0
 - First version published
