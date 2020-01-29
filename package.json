@@ -1,6 +1,6 @@
 {
   "name": "@sullivan/react-virtualizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple pseudo virtualization and reveal components to hide off-window components",
   "main": "lib/index.js",
   "files": [
