@@ -23,13 +23,16 @@ const Virtual = ({ children, style = {}, tag = 'div', ...props }: VirtualProps) 
       },
     );
 
+    // @ts-ignore
     obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
 
   useEffect(() => {
     setLastKnownDimensions({
+      // @ts-ignore
       height: ref.current.clientHeight,
+      // @ts-ignore
       width: ref.current.clientWidth,
     });
   }, [vis]);

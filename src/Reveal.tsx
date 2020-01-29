@@ -11,6 +11,7 @@ const Reveal = ({ children, tag = 'div', ...props }: VirtualProps) => {
       (entries) => {
         if (loaded && entries[0].isIntersecting) {
           setVis(true);
+          // @ts-ignore
           obs.unobserve(ref.current);
         }
         loaded = true;
@@ -22,6 +23,7 @@ const Reveal = ({ children, tag = 'div', ...props }: VirtualProps) => {
       },
     );
 
+    // @ts-ignore
     obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
