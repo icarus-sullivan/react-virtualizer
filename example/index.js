@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Reveal } from '@sullivan/react-virtualizer';
-
 import Item from './Item';
 import Footer from './Footer';
 

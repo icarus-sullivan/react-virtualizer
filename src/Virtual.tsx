@@ -14,7 +14,8 @@ const Virtual = ({ children, style = {}, tag = 'div', ...props }: VirtualProps) 
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
-        setVis(entries[0].isIntersecting);
+        // @ts-ignore
+        setVis(entries.pop().isIntersecting);
       },
       {
         root: null,
