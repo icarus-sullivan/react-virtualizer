@@ -13,8 +13,8 @@ const Internal = ({label}) => {
   return label;
 }
 
-const Item = (label) => (
-  <Virtual tag={'p'} style={styles}>
+const Item = ({ label, index }) => (
+  <Virtual tag={'p'} style={styles} initialHeight={index === 1 ? undefined : '200px'} initialWidth={'200px'} rootMargin={'0px'}>
     <Internal label={label} />
   </Virtual>
 );

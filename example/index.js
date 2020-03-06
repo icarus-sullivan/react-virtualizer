@@ -8,7 +8,7 @@ const items = Array(100).fill().map((_, i) => `item_${i}`);
 
 const Render = () => (
   <div>
-    {items.map(Item)}
+    {items.map((a, i) => (<Item label={a} index={i} /> ))}
     <Footer />
   </div>
 );

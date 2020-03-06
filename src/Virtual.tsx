@@ -2,14 +2,16 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import './VirtualTypes';
 
-const DEFAULT_DIMENSIONS = {
-  height: '100vh',
-  width: '100vw',
-};
-
-const Virtual = ({ children, style = {}, tag = 'div',  rootMargin = '100px', ...props }: VirtualProps) => {
+const Virtual = ({ 
+  children, 
+  style = {}, 
+  tag = 'div', 
+  initialHeight = '100vh', 
+  initialWidth = '100vw', 
+  rootMargin = '100px', 
+  ...props }: VirtualProps) => {
   const [vis, setVis] = useState(false);
-  const [lastKnownDimensions, setLastKnownDimensions] = useState(DEFAULT_DIMENSIONS)
+  const [lastKnownDimensions, setLastKnownDimensions] = useState({ width: initialWidth, height: initialHeight });
   const ref = useRef();
   useEffect(() => {
     const obs = new IntersectionObserver(
