@@ -3,11 +3,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import './VirtualTypes';
 
 const DEFAULT_DIMENSIONS = {
-  height: 'auto',
-  width: 'auto',
+  height: '100vh',
+  width: '100vw',
 };
 
-const Virtual = ({ children, style = {}, tag = 'div', ...props }: VirtualProps) => {
+const Virtual = ({ children, style = {}, tag = 'div',  rootMargin = '100px', ...props }: VirtualProps) => {
   const [vis, setVis] = useState(false);
   const [lastKnownDimensions, setLastKnownDimensions] = useState(DEFAULT_DIMENSIONS)
   const ref = useRef();
@@ -19,7 +19,7 @@ const Virtual = ({ children, style = {}, tag = 'div', ...props }: VirtualProps) 
       },
       {
         root: null,
-        rootMargin: '0px',
+        rootMargin,
         threshold: [0],
       },
     );
@@ -38,14 +38,12 @@ const Virtual = ({ children, style = {}, tag = 'div', ...props }: VirtualProps) 
     });
   }, [vis]);
 
-  // Use last known height to mimic space when not visible
-  const overrides = vis ? style : { ...style, ...lastKnownDimensions };
-
   return React.createElement(
     tag,
     {
       ...props,
-      style: overrides,
+      // Use last known height to mimic space when not visible
+      style: vis ? style : { ...style, ...lastKnownDimensions },
       ref,
     },
     vis ? children : [],

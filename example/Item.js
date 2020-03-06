@@ -8,9 +8,14 @@ const styles = {
   marginRight: 10 
 };
 
+const Internal = ({label}) => {
+  console.log('rendering', label);
+  return label;
+}
+
 const Item = (label) => (
   <Virtual tag={'p'} style={styles}>
-    {label}
+    <Internal label={label} />
   </Virtual>
 );
 
