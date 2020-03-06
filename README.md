@@ -48,11 +48,20 @@ const Image = ({ src }) => (
 | tag      | div |
 | style    | {} |
 | children | [] |
+| rootMargin | 100px |
+| initialHeight | 100vh |
+| initialWidth | 100vw |
 
 ## Compatability
 React 16.8.3+
  
 ## Changelog
 
-### 1.0.0
+**1.0.4**
+- Added initialHeight and initialWidth to allow for more fine controls of item rendering
+
+**1.0.3**
+- Improved loading times
+
+**1.0.0**
 - First version published
