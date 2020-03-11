@@ -2,6 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import './VirtualTypes';
 
+const parseEntity = (v: any) => {
+  if (Number.isInteger(v)) {
+    return `${v}px`;
+  }
+
+  return v;
+}
+
 const Virtual = ({ 
   children, 
   style = {}, 
@@ -11,17 +19,30 @@ const Virtual = ({
   rootMargin = '100px', 
   ...props }: VirtualProps) => {
   const [vis, setVis] = useState(false);
-  const [lastKnownDimensions, setLastKnownDimensions] = useState({ width: initialWidth, height: initialHeight });
+  const [dimesions, setDimensions] = useState({ width: initialWidth, height: initialHeight });
   const ref = useRef();
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
+        const entry = entries.pop();
         // @ts-ignore
-        setVis(entries.pop().isIntersecting);
+        const visible = entry.isIntersecting;
+        setVis(visible);
+
+        if (!visible) {
+          // @ts-ignore
+          const bounds = entry.boundingClientRect;
+          setDimensions({
+            // @ts-ignore
+            height: bounds.height,
+            // @ts-ignore
+            width: bounds.width,
+          });
+        }
       },
       {
         root: null,
-        rootMargin,
+        rootMargin: parseEntity(rootMargin),
         threshold: [0],
       },
     );
@@ -31,21 +52,12 @@ const Virtual = ({
     return () => obs.disconnect();
   }, []);
 
-  useEffect(() => {
-    setLastKnownDimensions({
-      // @ts-ignore
-      height: ref.current.clientHeight,
-      // @ts-ignore
-      width: ref.current.clientWidth,
-    });
-  }, [vis]);
-
   return React.createElement(
     tag,
     {
       ...props,
       // Use last known height to mimic space when not visible
-      style: vis ? style : { ...style, ...lastKnownDimensions },
+      style: vis ? style : { ...style, ...dimesions },
       ref,
     },
     vis ? children : [],

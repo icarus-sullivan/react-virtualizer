@@ -18,6 +18,18 @@ yarn add @sullivan/react-virtualizer
 ## Virtual 
 The `Virtual` component hides its children when it is no longer visible within the browser window. 
 
+
+#### Props 
+
+| prop     | type    | default |
+|----------|---------|---------|
+| tag      | string  | div     |
+| style    | object  | {} |
+| children | React.Children | [] |
+| rootMargin | string \| number | 100px |
+| initialHeight | string \| number | 100vh |
+| initialWidth | string \| number | 100vw |
+
 ```javascript
 import Virtual from '@sullivan/react-virtualizer';
 
@@ -31,6 +43,14 @@ const Item = () => (
 ## Reveal
 The `Reveal` component doesn't show any of its children until it is scrolled into the browser window.
 
+#### Props 
+
+| prop     | type    | default |
+|----------|---------|---------|
+| tag      | string  | div     |
+| style    | object  | {} |
+| children | React.Children | [] |
+
 ```javascript
 import { Reveal } from '@sullivan/react-virtualizer';
 
@@ -41,21 +61,17 @@ const Image = ({ src }) => (
 );
 ```
 
-## Props 
-
-| prop     | default |
-|----------|---------|
-| tag      | div |
-| style    | {} |
-| children | [] |
-| rootMargin | 100px |
-| initialHeight | 100vh |
-| initialWidth | 100vw |
+## Performance Tweaks
+If you find that the `Virtual` component is slow to load while scrolling or tends to pop-in. You can tweak the initialHeight and initialWidth to be a closer approximation to the actual content. This helps speed up sibling `Virtual` components in determining their own dimensions. 
 
 ## Compatability
 React 16.8.3+
  
 ## Changelog
+
+**1.0.5**
+- Performance improvements, obtaining dimensions from entry instead of forcing a repaint on the component
+- Adding number support for initialHeight, initialWidth, and rootMargin
 
 **1.0.4**
 - Added initialHeight and initialWidth to allow for more fine controls of item rendering
