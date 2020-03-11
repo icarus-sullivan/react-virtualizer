@@ -1,20 +1,13 @@
 import React from 'react';
 import Virtual from '@sullivan/react-virtualizer';
 
-const styles = {
-  width: 200, 
-  height: 200, 
-  float: 'left', 
-  marginRight: 10 
-};
-
 const Internal = ({label}) => {
   console.log('rendering', label);
   return label;
 }
 
-const Item = ({ label, index }) => (
-  <Virtual tag={'p'} style={styles} initialHeight={index === 1 ? undefined : '200px'} initialWidth={'200px'} rootMargin={'0px'}>
+const Item = ({ label, className, index }) => (
+  <Virtual tag={'p'} className={className} initialHeight={index === 1 ? undefined : '200px'} initialWidth={'200px'} rootMargin={'0px'}>
     <Internal label={label} />
   </Virtual>
 );

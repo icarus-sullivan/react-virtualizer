@@ -1,18 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate } from 'react-dom';
 
 import Item from './Item';
 import Footer from './Footer';
 
-const items = Array(100).fill().map((_, i) => `item_${i}`);
+import './style.css';
+
+const items = (l) => Array(1000).fill().map((_, i) => `${l}_${i}`);
 
 const Render = () => (
-  <div>
-    {items.map((a, i) => (<Item label={a} index={i} /> ))}
+  <div style={{ boxSizing: 'border-box', width: '100vw', height: '100vh' }}>
+    <div className="base red">
+      {items('red').map((a, i) => (<Item key={a} label={a} className="item-base" index={i} /> ))}
+    </div>
+    <div className="base blue">
+      {items('blue').map((a, i) => (<Item key={a} label={a} className="item-nofloat" index={i} /> ))}
+    </div>
+    <div className="base green">
+      {items('green').map((a, i) => (<Item key={a} label={a} className="item-base" index={i} /> ))}
+    </div>
     <Footer />
   </div>
 );
 
-const elem = document.createElement('div');
-document.body.appendChild(elem);
-ReactDOM.render(<Render/>, elem);
+hydrate(<Render />, document.body);

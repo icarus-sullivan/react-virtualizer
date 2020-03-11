@@ -1,0 +1,35 @@
+
+.base {
+  box-sizing: border-box;
+  float: left;
+  overflow: auto;
+  border: 1px solid #333;
+}
+
+.red {
+  width: 200px;
+  height: 100%;
+}
+
+.blue {
+  height: 200px;
+  width: calc(100% - 200px);
+  display: flex;
+}
+
+.green {
+  height: calc(100% - 200px);
+  width: calc(100% - 200px);
+}
+
+.item-base {
+  width: 200px;
+  height: 200px;
+  float: left;
+  margin-right: 10px;
+}
+
+.item-nofloat {
+  min-width: 200px;
+  height: 200px;
+}
